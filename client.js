@@ -5,16 +5,20 @@ class Client {
         //Add "GatewayIntentBits" to the beginning of each intent in the "intentsArray"
         this.intents = intentsArray.map(intents => GatewayIntentBits[intents]);
         this.client = new RawClient({ intents: this.intents });
+        this.token = token;
     }
 
-    on(event) {
-        const client = this.client;
+    on(event, callback) {
+        this.client.on(Events[event], callback)
     }
 
     ready(listeners) {
         //Wait for client to be ready and then run "client.on" listeners
-        this.client.once(Events.ClientReady, listeners(this.on));
+        this.client.once(Events.ClientReady, () => listeners());
+        this.client.login(this.token);
     }
 }
 
-export default Client;
+
+//Export Client
+module.exports = Client;
