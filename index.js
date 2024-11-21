@@ -1,1 +1,5 @@
-const { Client, Events, GatewayIntentBits } = require('discord.js');
+const Client = require('./client.js');
+
+
+
+export default {Client};
