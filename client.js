@@ -12,9 +12,16 @@ class Client {
         this.client.on(Events[event], callback)
     }
 
+    onCommand(command, callback) {
+
+    }
+
     ready(listeners) {
         //Wait for client to be ready and then run "client.on" listeners
         this.client.once(Events.ClientReady, () => listeners());
+    }
+
+    login() {
         this.client.login(this.token);
     }
 }
